@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using static CubeUtils;
+using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
@@ -30,25 +32,31 @@ public class GameManager : MonoBehaviour
         
         historyManager = GetComponent<RotationsHistoryManager>();
 
+        bool loaded = false;
+
         if (!GameSessionManager.Instance.NewGame && SaveManager.Instance.SavedGameExists)
         {
             SaveManager.Instance.LoadCurrentSavedGame(out size, out List<List<List<int>>> stickers, out List<RotationAction> history, out timer);
             cubeManager = GetComponent<CubeBuilder>().LoadCube(size, stickers);
             historyManager.LoadRotationHistory(history);
-            StartCoroutine(FromLoadedGame());
+            loaded = true;
         }
         else
-        {
             cubeManager = GetComponent<CubeBuilder>().CreateCube(size);
-            StartCoroutine(ScramblingCube());
-        }
 
         playerInputManager.SetCubeManager(cubeManager);
         cameraMovementManager = playerInputManager.gameObject.GetComponent<CameraMovementManager>();
         cameraMovementManager.SetUpInitialTargets(size);
+        playerInputManager.gameObject.GetComponent<LevelBGManager>().SetLvlBG(size);
+        
         hudManager = GameObject.FindWithTag("HUD").GetComponent<HUDManager>();
         
         hudManager.ShowGameHUDAtStart();
+        
+        SceneFader.Instance.FadeNow(0.25f, true,
+            loaded
+                ? (Action)(()=>StartCoroutine(FromLoadedGame()))
+                : (Action)(()=>StartCoroutine(ScramblingCube())));
     }
 
     private void Update()
@@ -154,7 +162,7 @@ public class GameManager : MonoBehaviour
         GameSessionManager.Instance.NewGame = true;
         GameSessionManager.Instance.CubeSize = cubeManager.CubeSize;
         GameSessionManager.Instance.NextScene = 2;
-        SceneManager.LoadScene(0);
+        SceneFader.Instance.FadeNow(0.25f, false, ()=>SceneManager.LoadScene(0));
     }
 
     public void ConfirmReturnToTitle()
@@ -165,7 +173,7 @@ public class GameManager : MonoBehaviour
             SaveManager.Instance.DeleteSavedGame();
         
         GameSessionManager.Instance.NextScene = 1;
-        SceneManager.LoadScene(0);
+        SceneFader.Instance.FadeNow(0.25f, false, ()=>SceneManager.LoadScene(0));
     }
 
     private void BeginGame()

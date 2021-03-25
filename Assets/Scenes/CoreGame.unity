@@ -1864,51 +1864,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: BGCubesCoreGame
       objectReference: {fileID: 0}
-    - target: {fileID: 4231501856170442051, guid: 2dd9ad1220465284589cb9acb3c3ddea,
-        type: 3}
-      propertyPath: ColorModule.gradient.maxGradient.key1.b
-      value: 0.5377358
-      objectReference: {fileID: 0}
-    - target: {fileID: 4231501856170442051, guid: 2dd9ad1220465284589cb9acb3c3ddea,
-        type: 3}
-      propertyPath: ColorModule.gradient.maxGradient.key1.g
-      value: 0.5377358
-      objectReference: {fileID: 0}
-    - target: {fileID: 4231501856170442051, guid: 2dd9ad1220465284589cb9acb3c3ddea,
-        type: 3}
-      propertyPath: ColorModule.gradient.maxGradient.key1.r
-      value: 0.5377358
-      objectReference: {fileID: 0}
-    - target: {fileID: 4231501856170442051, guid: 2dd9ad1220465284589cb9acb3c3ddea,
-        type: 3}
-      propertyPath: InitialModule.startColor.maxGradient.key0.b
-      value: 0.18867922
-      objectReference: {fileID: 0}
-    - target: {fileID: 4231501856170442051, guid: 2dd9ad1220465284589cb9acb3c3ddea,
-        type: 3}
-      propertyPath: InitialModule.startColor.maxGradient.key0.g
-      value: 0.1177999
-      objectReference: {fileID: 0}
-    - target: {fileID: 4231501856170442051, guid: 2dd9ad1220465284589cb9acb3c3ddea,
-        type: 3}
-      propertyPath: InitialModule.startColor.maxGradient.key0.r
-      value: 0.027589884
-      objectReference: {fileID: 0}
-    - target: {fileID: 4231501856170442051, guid: 2dd9ad1220465284589cb9acb3c3ddea,
-        type: 3}
-      propertyPath: InitialModule.startColor.maxGradient.key1.b
-      value: 0.3962264
-      objectReference: {fileID: 0}
-    - target: {fileID: 4231501856170442051, guid: 2dd9ad1220465284589cb9acb3c3ddea,
-        type: 3}
-      propertyPath: InitialModule.startColor.maxGradient.key1.g
-      value: 0.23615836
-      objectReference: {fileID: 0}
-    - target: {fileID: 4231501856170442051, guid: 2dd9ad1220465284589cb9acb3c3ddea,
-        type: 3}
-      propertyPath: InitialModule.startColor.maxGradient.key1.r
-      value: 0.09158064
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2dd9ad1220465284589cb9acb3c3ddea, type: 3}
 --- !u!1 &774078212
@@ -2591,6 +2546,7 @@ GameObject:
   - component: {fileID: 963194226}
   - component: {fileID: 963194230}
   - component: {fileID: 963194229}
+  - component: {fileID: 963194231}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2688,6 +2644,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   catcher: {fileID: 7160675263475076492}
+--- !u!114 &963194231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 408954a5eb9b72f4585194b88741724a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bgCubes: {fileID: 1423533149}
 --- !u!1 &1012528986
 GameObject:
   m_ObjectHideFlags: 0
@@ -3720,6 +3689,12 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!198 &1423533149 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 4231501856170442051, guid: 2dd9ad1220465284589cb9acb3c3ddea,
+    type: 3}
+  m_PrefabInstance: {fileID: 758194690}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1425640926
 GameObject:
   m_ObjectHideFlags: 0

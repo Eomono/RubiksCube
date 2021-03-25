@@ -18,6 +18,8 @@ public class TitleScreenManager : MonoBehaviour
         SaveManager.Instance.PreLoadSavedGame();
         
         LoadGameBttn.SetActive(SaveManager.Instance.SavedGameExists);
+        
+        SceneFader.Instance.FadeNow(0.25f, true, null);
     }
 
     public void GoToSizeSelection()
@@ -85,6 +87,6 @@ public class TitleScreenManager : MonoBehaviour
     private void GoToCoreGame()
     {
         GameSessionManager.Instance.NextScene = 2;
-        SceneManager.LoadScene(0);
+        SceneFader.Instance.FadeNow(0.25f, false, ()=>SceneManager.LoadScene(0));
     }
 }
